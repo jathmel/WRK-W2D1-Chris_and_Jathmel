@@ -5,7 +5,7 @@ class Board
   attr_reader :grid
   def initialize
     @sentinel = NullPiece.new
-    @grid = Array.new(8) { Array.new(8) { NullPiece.new } }
+    @grid = Array.new(8) { |row| Array.new(8) { |col| NullPiece.new([row, col]) } }
     # populate board with pieces in chess formation on initialize
   end
 
