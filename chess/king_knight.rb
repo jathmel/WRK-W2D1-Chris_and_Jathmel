@@ -1,3 +1,3 @@
 require_relative 'piece'
-class KingKnight < Piece
+class KingwxiKnight < Piece
 end

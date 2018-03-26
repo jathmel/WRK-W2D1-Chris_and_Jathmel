@@ -1,11 +1,11 @@
 class Piece
-  def initialize(color, board)
+  def initialize(color)
     @color = color
-    @board = board
-    @sysmbol = 
+    # @board = board
+    @sysmbol = nil
     # @pos = []
   end
-
-  def to_s
-  end
+  #
+  # def to_s
+  # end
 end

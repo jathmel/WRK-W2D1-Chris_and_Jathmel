@@ -4,7 +4,7 @@ require_relative 'pawn'
 class Board
   attr_reader :grid
   def initialize
-    @sentinel = NullPiece.new
+    @sentinel = NullPiece.new([10, 10])
     @grid = Array.new(8) { |row| Array.new(8) { |col| NullPiece.new([row, col]) } }
     # populate board with pieces in chess formation on initialize
   end
