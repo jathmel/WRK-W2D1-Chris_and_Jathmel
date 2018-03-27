@@ -6,7 +6,9 @@ class Piece
     @symbol = nil
     @pos = pos
   end
-  #
+
+  # private
+  attr_reader :pos, :board
   # def to_s
   # end
 end

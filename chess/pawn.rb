@@ -5,9 +5,6 @@ class Pawn < Piece
     @symbol = @color == :white ? "\u2659 " : "\u265F "
   end
 
-  # private
-  attr_reader :pos, :board
-
   def move_dirs
     # if color == :black, can move + down rows else can move - up rows
     forward_steps.map { |step| [step + pos[0], pos[1]] } + side_attacks

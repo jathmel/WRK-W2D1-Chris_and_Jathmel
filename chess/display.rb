@@ -9,6 +9,7 @@ class Display
     @cursor = cursor
   end
   def render
+    system('clear')
     board.grid.each do |row|
       row.each do |square|
         print square.symbol.colorize(square.color)

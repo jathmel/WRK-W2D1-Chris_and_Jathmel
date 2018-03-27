@@ -75,7 +75,8 @@ class Cursor
     return input
   end
 
-  def handle_key(key)
+  def handle_key(key) # handles the key from get_input, does not handle the keyboard input
+    MOVES[key]
   end
 
   def update_pos(diff)
