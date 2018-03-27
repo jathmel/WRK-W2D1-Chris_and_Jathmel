@@ -13,5 +13,5 @@
 #                       "\u265E " + // black knight
 #                       "\u265F " + // black pawn
 #                       "\n" ;
-#                       "u/25A3 " + // solid square
-#                       "u/25A2 " + // empty square
+#                       "\u25A3 " + // solid square
+#                       "\u25A2 " + // empty square

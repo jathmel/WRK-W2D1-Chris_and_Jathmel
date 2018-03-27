@@ -3,12 +3,13 @@ require_relative 'board'
 require_relative 'cursor'
 
 class Display
-  def initialize(board, cursor)
+  attr_reader :board, :cursor
+  def initialize(cursor, board)
     @board = board
     @cursor = cursor
   end
   def render
-    board.each do |row|
+    board.grid.each do |row|
       row.each do |square|
         print square.symbol.colorize(square.color)
       end

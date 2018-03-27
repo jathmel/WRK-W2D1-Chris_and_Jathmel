@@ -4,6 +4,7 @@ class NullPiece < Piece
   def initialize(pos)
     @pos = pos
     @color = NullPiece.get_color(pos)
+    @symbol = "\u25A3 "
   end
 
   private
