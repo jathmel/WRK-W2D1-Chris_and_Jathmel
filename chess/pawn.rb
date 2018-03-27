@@ -10,7 +10,7 @@ class Pawn < Piece
 
   def move_dirs
     # if color == :black, can move + down rows else can move - up rows
-
+    forward_steps.map { |step| [step + pos[0], pos[1]] } + side_attacks
   end
 
   def at_start_row?
