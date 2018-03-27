@@ -1,3 +1,5 @@
+require 'byebug'
+
 require_relative 'null_piece.rb'
 require_relative 'pawn'
 require_relative 'rook'
@@ -77,6 +79,24 @@ class Board
 
   def checkmate?(color)
     # if color.king.valid_moves.empty?
+  end
+
+  def own_team?(color, pos)
+    # not be a NullPiece &&
+    !@grid[pos].is_a?(NullPiece) && color == @grid[pos].color
+  end
+
+  def safe_move?(color, pos)
+    gonna_getcha = []
+    grid.each do |row|
+      row.each do |square|
+        unless square.is_a?(NullPiece) && square.color == color
+          # puts square.move_dirs
+          gonna_getcha.concat(square.move_dirs)
+        end
+      end
+    end
+    !gonna_getcha.include?(pos)
   end
 
   def in_check?(color)

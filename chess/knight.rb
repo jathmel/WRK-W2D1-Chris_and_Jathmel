@@ -9,9 +9,10 @@ class Knight < Piece
   include Stepable
   def moves
   end
-
-  def move_dirs
-  end
+  # 
+  # def move_dirs
+  #
+  # end
 
 
 end

@@ -7,6 +7,14 @@ class Piece
     @pos = pos
   end
 
+  def move_dirs
+    []
+  end
+
+  def update_pos(pos)
+    @pos = pos
+  end
+
   # private
   attr_reader :pos, :board
   # def to_s
