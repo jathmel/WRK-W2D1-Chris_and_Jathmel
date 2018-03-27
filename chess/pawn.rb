@@ -2,7 +2,7 @@ require_relative 'piece'
 class Pawn < Piece
   def initialize(color, board, pos)
     super(color, board, pos)
-    @symbol = @color == :white ? "\u2659 " : "\u265F "
+    @symbol = "\u2659 "
   end
 
   def move_dirs

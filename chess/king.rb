@@ -5,7 +5,7 @@ class King < Piece
   include Stepable
   def initialize(color, board, pos)
     super(color, board, pos)
-    @symbol = color == :black ? "\u265A " : "\u2654 "
+    @symbol = "\u2654 "
   end
 
   # protected

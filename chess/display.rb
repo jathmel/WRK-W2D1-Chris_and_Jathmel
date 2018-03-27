@@ -2,6 +2,8 @@ require 'colorize'
 require_relative 'board'
 require_relative 'cursor'
 
+require 'byebug'
+
 class Display
   attr_reader :board, :cursor
   def initialize(cursor, board)
@@ -10,9 +12,14 @@ class Display
   end
   def render
     system('clear')
+    # debugger
     board.grid.each do |row|
       row.each do |square|
-        print square.symbol.colorize(square.color)
+        if square.pos == cursor.cursor_pos
+          print square.symbol.colorize(:yellow)
+        else
+          print square.symbol.colorize(square.color)
+        end
       end
       puts
     end

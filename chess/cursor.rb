@@ -1,7 +1,7 @@
 require "io/console"
+require 'byebug'
 
 KEYMAP = {
-  " " => :space,
   "h" => :left,
   "j" => :down,
   "k" => :up,
@@ -10,14 +10,15 @@ KEYMAP = {
   "a" => :left,
   "s" => :down,
   "d" => :right,
-  "\t" => :tab,
-  "\r" => :return,
-  "\n" => :newline,
-  "\e" => :escape,
   "\e[A" => :up,
   "\e[B" => :down,
   "\e[C" => :right,
   "\e[D" => :left,
+  " " => :space,
+  "\t" => :tab,
+  "\r" => :return,
+  "\n" => :newline,
+  "\e" => :escape,
   "\177" => :backspace,
   "\004" => :delete,
   "\u0003" => :ctrl_c,
@@ -45,6 +46,7 @@ class Cursor
   end
 
   private
+  attr_writer :cursor_pos
 
   def read_char
     STDIN.echo = false # stops the console from printing return values
@@ -76,9 +78,26 @@ class Cursor
   end
 
   def handle_key(key) # handles the key from get_input, does not handle the keyboard input
-    MOVES[key]
+    next_move_from_here = nil
+    case key
+    when :return, :space
+      next_move_from_here = cursor_pos
+    when *(KEYMAP.values[0...4])
+      next_move_from_here = update_pos(MOVES[key])
+    when :ctrl_c
+      next_move_from_here = Process.exit
+    end
+    next_move_from_here
   end
 
   def update_pos(diff)
+    potential_moves = [
+      cursor_pos[0] + diff[0],
+      cursor_pos[1] + diff[1]
+    ]
+    # debugger
+    if board.valid_pos?(potential_moves)
+      @cursor_pos = potential_moves
+    end
   end
 end

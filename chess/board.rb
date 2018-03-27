@@ -1,12 +1,48 @@
 require_relative 'null_piece.rb'
 require_relative 'pawn'
+require_relative 'rook'
+require_relative 'bishop'
+require_relative 'knight'
+require_relative 'king'
+require_relative 'queen'
+
 
 class Board
   attr_reader :grid
   def initialize
     @sentinel = NullPiece.new([10, 10])
-    @grid = Array.new(8) { |row| Array.new(8) { |col| NullPiece.new([row, col]) } }
+    @grid = Array.new(8) do |row|
+      Array.new(8) do |col|
+        case row
+        when 1, 6
+          color = row == 1 ? :black : :white
+          Pawn.new(color, self, [row, col])
+        when 0, 7
+          back_row(row, col)
+        else
+          NullPiece.new([row, col])
+        end
+      end
+    end
     # populate board with pieces in chess formation on initialize
+
+  end
+
+  def back_row(row, col)
+    color = row == 0 ? :black : :white
+    args = [color, self, [row, col]]
+    case col
+    when 0, 7
+      Rook.new(*args)
+    when 1, 6
+      Knight.new(*args)
+    when 2, 5
+      Bishop.new(*args)
+    when 3
+      color == :black ? King.new(*args) : Queen.new(*args)
+    when 4
+      color == :white ? King.new(*args) : Queen.new(*args)
+    end
   end
 
   def [](pos)
@@ -27,7 +63,7 @@ class Board
       raise RangeError.new("End position is not on the board")
     end
     self[end_pos] = self[start_pos]
-    self[start_pos] = NullPiece.new
+    self[start_pos] = NullPiece.new(start_pos)
   end
 
   def valid_pos?(pos)

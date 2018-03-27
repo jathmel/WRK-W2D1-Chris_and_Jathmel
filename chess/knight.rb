@@ -3,7 +3,7 @@ require_relative 'stepable'
 class Knight < Piece
   def initialize(color, board, pos)
     super(color, board, pos)
-    @symbol = @color == :black ? "\u265E " : "\u2658 "
+    @symbol = "\u2658 "
   end
 
   include Stepable
